@@ -93,7 +93,12 @@ public class BookServiceImpl implements BookServiceInterface{
     // Helper methods
     private BookDTO mapEntityToDTO(Book book){
 
-        return BookMapper.entityToDTO(book);
+        BookDTO dto = BookMapper.entityToDTO(book);
+
+        if(book.getAuthorId() != null)
+            dto.setAuthorId(book.getAuthorId());
+
+        return dto;
     }
 
     private BookWithAuthorDTO validateAndRetrieveBookWithAuthorDTO(Long bookId){
