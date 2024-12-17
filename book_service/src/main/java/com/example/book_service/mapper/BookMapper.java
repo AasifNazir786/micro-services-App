@@ -29,7 +29,7 @@ public class BookMapper {
         return dto;
     }
 
-    public static BookWithAuthorDTO getBookWithAuthorDTO(Book book, Author author){
+    public static BookWithAuthorDTO mapBookWithAuthorDTO(Book book, Author author){
         return new BookWithAuthorDTO(book.getBookId(),
                     book.getBookTitle(), book.getBookStock(),
                     book.getBookPrice(), book.getGenre(),
