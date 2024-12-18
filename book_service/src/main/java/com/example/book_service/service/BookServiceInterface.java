@@ -2,6 +2,8 @@ package com.example.book_service.service;
 
 
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -16,4 +18,5 @@ public interface BookServiceInterface {
     BookWithAuthorDTO getBookWithAuthorDTO(Long id);
     BookDTO updateBook(Long id, BookDTO dto);
     void deleteBook(Long id);
+    List<BookDTO> getBooksByIds(List<Long> ids);
 }

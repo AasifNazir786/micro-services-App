@@ -1,5 +1,8 @@
 package com.example.book_service.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +39,16 @@ public class BookServiceImpl implements BookServiceInterface{
         Book book = BookMapper.dtoToEntity(dto);
 
         return mapEntityToDTO(bookRepository.save(book));
+    }
+
+    @Override
+    public List<BookDTO> getBooksByIds(List<Long> ids){
+        List<BookDTO> books = new ArrayList<>();
+        for(var id : ids){
+            BookDTO book = getBookById(id);
+            books.add(book);
+        }
+        return books;
     }
 
     @Override
@@ -115,7 +128,7 @@ public class BookServiceImpl implements BookServiceInterface{
 
     private Author getAuthor(Long authorId){
         try{
-            return restTemplate.getForObject("http://localhost:8081/api/authors/"+ authorId, Author.class);
+            return restTemplate.getForObject("http://author-service/api/authors/"+ authorId, Author.class);
 
         }catch(RestClientException e){
             
